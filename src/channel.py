@@ -42,7 +42,6 @@ class Channel:
 
     def to_json(self, json_name):
         """Сохраняет в файл json значения атрибутов экземпляра данного класса"""
-        descr = self.description
         data = {"channel_id": self.channel_id, "title": self.title, "description": self.description,
                 "url": self.url, "subscriber_count": self.subscriber_count, "video_count": self.video_count,
                 "view_count": self.view_count}
