@@ -6,14 +6,11 @@ from googleapiclient.discovery import build
 class Channel:
     """Класс для ютуб-канала"""
     api_key: str = os.getenv('YOUTUBE_API_KEY')
-    # youtube = build('youtube', 'v3', developerKey=api_key)
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API"""
-        # api_key: str = os.getenv('YOUTUBE_API_KEY')
-        self.youtube = build('youtube', 'v3', developerKey=Channel.api_key)
         self.__channel_id = channel_id
-        self.dict_info = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
+        self.dict_info = Channel.get_service().channels().list(id=self.channel_id, part='snippet,statistics').execute()
         #название канала
         self.title = self.dict_info["items"][0]["snippet"]["title"]
         #описание канала
@@ -26,6 +23,33 @@ class Channel:
         self.video_count = self.dict_info["items"][0]["statistics"]["videoCount"]
         #общее количество просмотров
         self.view_count = self.dict_info["items"][0]["statistics"]["viewCount"]
+
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        self.rezult = int(self.subscriber_count) + int(other.subscriber_count)
+        return self.rezult
+
+    def __sub__(self, other):
+        self.rezult = int(self.subscriber_count) - int(other.subscriber_count)
+        return self.rezult
+
+    def __lt__(self, other):
+        self.rezult = int(self.subscriber_count) < int(other.subscriber_count)
+        return self.rezult
+
+    def __le__(self, other):
+        self.rezult = int(self.subscriber_count) <= int(other.subscriber_count)
+        return self.rezult
+
+    def __gt__(self, other):
+        self.rezult = int(self.subscriber_count) > int(other.subscriber_count)
+        return self.rezult
+
+    def __ge__(self, other):
+        self.rezult = int(self.subscriber_count) >= int(other.subscriber_count)
+        return self.rezult
 
     @property
     def channel_id(self):
