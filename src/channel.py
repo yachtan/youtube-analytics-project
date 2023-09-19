@@ -28,28 +28,22 @@ class Channel:
         return f'{self.title} ({self.url})'
 
     def __add__(self, other):
-        self.rezult = int(self.subscriber_count) + int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) + int(other.subscriber_count)
 
     def __sub__(self, other):
-        self.rezult = int(self.subscriber_count) - int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) - int(other.subscriber_count)
 
     def __lt__(self, other):
-        self.rezult = int(self.subscriber_count) < int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) < int(other.subscriber_count)
 
     def __le__(self, other):
-        self.rezult = int(self.subscriber_count) <= int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) <= int(other.subscriber_count)
 
     def __gt__(self, other):
-        self.rezult = int(self.subscriber_count) > int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) > int(other.subscriber_count)
 
     def __ge__(self, other):
-        self.rezult = int(self.subscriber_count) >= int(other.subscriber_count)
-        return self.rezult
+        return int(self.subscriber_count) >= int(other.subscriber_count)
 
     @property
     def channel_id(self):
