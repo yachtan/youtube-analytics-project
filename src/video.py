@@ -1,8 +1,10 @@
 from googleapiclient.discovery import build
 import os
 
+
 class Video:
     api_key: str = os.getenv('YOUTUBE_API_KEY')
+
     def __init__(self, video_id):
         self.video_id = video_id
         self.youtube = build('youtube', 'v3', developerKey=Video.api_key)
@@ -19,6 +21,7 @@ class Video:
 
     def __str__(self):
         return f'{self.video_title}'
+
 
 class PLVideo(Video):
     def __init__(self, video_id, playlist_id):
